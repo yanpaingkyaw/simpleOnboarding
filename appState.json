@@ -1,0 +1,83 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "c66f2eef-811f-40af-8c43-8546be12031a": {
+        "id": "c66f2eef-811f-40af-8c43-8546be12031a",
+        "parent": null,
+        "name": "simpleOnboarding",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8"
+        ],
+        "isRemovable": false,
+        "filePath": "simpleOnboarding"
+      },
+      "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8": {
+        "id": "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8",
+        "parent": "c66f2eef-811f-40af-8c43-8546be12031a",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "simpleOnboarding/lambda.js",
+        "code": "\nlet Swagger = require('swagger-client');\n\nexports.handler = function (event, context, callback) {\n\n    Swagger.http({\n        url: 'https://services.apixplatform.com/api-sandbox/application/token',\n        method: 'post',\n        query: {},\n        headers: { \"Accept\": \"*/*\", \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({\n            \"userName\": \"mmbank10@apixdemo.com\",\n            \"password\": \"Passw0rd@\"\n        })\n    }).then((response) => {\n        var access_token = \"bearer \" + response.body.access_token;\n        // Insert new API calls here to call with APIX Access Token\n\n       \n\n\n        callback(null, access_token);\n    }).catch((err) => {\n        console.log(err);\n        callback(\"Execution failed\");\n    });\n\n}",
+        "triggers": [],
+        "config": {
+          "runtime": "nodejs8.10",
+          "timeout": 60,
+          "memory": 128
+        },
+        "testCases": {
+          "e9a3f946-35d3-45af-aec0-e0df06e1ac30": {
+            "id": "e9a3f946-35d3-45af-aec0-e0df06e1ac30",
+            "name": "testEvent",
+            "functionId": "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8",
+            "event": "{\n    \n}"
+          }
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "c66f2eef-811f-40af-8c43-8546be12031a",
+    "openFiles": [],
+    "currentFileId": "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8",
+    "resources": {},
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "swagger-client": {
+          "name": "swagger-client",
+          "version": "3.8.21"
+        }
+      }
+    },
+    "lambdaId": "bf9444d4-781b-4c7c-90ca-cc09f3fb4cb8"
+  },
+  "PROJECT_META": {
+    "projectName": "simpleOnboarding",
+    "projectDescription": "Experiment for Kyc",
+    "projectVersion": "1.0.0",
+    "projectRegion": "ap-southeast-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1551949123605
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "simpleOnboarding",
+      "url": "https://github.com/yanpaingkyaw/simpleOnboarding"
+    }
+  }
+}
